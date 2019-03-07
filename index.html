@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <!-- 是否启动webapp功能，会删除默认的苹果工具栏和菜单栏。 -->
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <!-- 这个主要是根据实际的页面设计的主体色为搭配来进行设置。 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <!-- 忽略页面中的数字识别为电话号码,email识别 -->
+    <meta name="format-detection" content="telephone=no, email=no"/>
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="css/base.css">
+    <title>我正在砍价</title>
+</head>
+<style>
+    @font-face {
+        font-family: 'iconfont';  /* project id 1075297 */
+        src: url('//at.alicdn.com/t/font_1075297_jqe7wri5nd.eot');
+        src: url('//at.alicdn.com/t/font_1075297_jqe7wri5nd.eot?#iefix') format('embedded-opentype'),
+        url('//at.alicdn.com/t/font_1075297_jqe7wri5nd.woff2') format('woff2'),
+        url('//at.alicdn.com/t/font_1075297_jqe7wri5nd.woff') format('woff'),
+        url('//at.alicdn.com/t/font_1075297_jqe7wri5nd.ttf') format('truetype'),
+        url('//at.alicdn.com/t/font_1075297_jqe7wri5nd.svg#iconfont') format('svg');
+    }
+    .iconfont{
+        font-family:"iconfont" !important;
+        font-size:16px;font-style:normal;
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-stroke-width: 0.2px;
+        -moz-osx-font-smoothing: grayscale;}
+    body{
+        font-family: "PingFang SC";
+    }
+    .banner{
+        width: 100%;
+        height: 4rem;
+        background: url(images/banner.jpg)no-repeat center center / 100% 100%;
+        overflow: hidden;
+    }
+    .User-Info{
+        box-sizing: border-box;
+        width: 70%;
+        height:52%;
+        margin:0 auto;
+        margin-top: .6rem;
+        background: #fff;
+        border-radius: .1rem;
+        box-shadow: .02rem .02rem .02rem .02rem #f6f6f6;
+        overflow:hidden;
+    }
+    .user-pic{
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        margin: .1rem auto;
+
+    }
+    .user-pic img{
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+    .user-name{
+        width: 100%;
+        height: .3rem;
+        font-size: .24rem;
+        text-align: center;
+        line-height: .3rem;
+        font-weight: 400;
+    }
+    .User-Info .text{
+        width: 100%;
+        height: .4rem;
+        margin: .2rem auto;
+        text-align: center;
+        line-height: .4rem;
+        font-size: .28rem;
+        font-weight:600;
+    }
+    .help-btn{
+        display: block;
+        background: #fe0017;
+        height:1rem;
+        width: 80%;
+        margin: .3rem auto;
+        border: none;
+        border-radius: .5rem;
+        text-align: center;
+        line-height: 1rem;
+        color: #fff;
+        font-size: .3rem;
+        font-weight: bold;
+    }
+    .buy{
+        box-sizing: border-box;
+        border: .02rem solid #eeac00;
+        display: block;
+        height:1rem;
+        width: 80%;
+        margin: .3rem auto;
+        border-radius: .5rem;
+        text-align: center;
+        line-height: 1rem;
+        color: #eeac00;
+        font-size: .3rem;
+        font-weight: bold;
+    }
+
+
+    a:link,a:visited
+    {
+        color:#000;
+        text-decoration: none;
+    }
+    input
+    {
+        outline: 0;
+    }
+
+    .swiper_wrap{
+        position: relative;
+        width:100%;
+        height: 30px;
+        margin: 0 auto;
+        overflow: hidden;
+        box-sizing: border-box;
+        margin-top: .5rem;
+
+    }
+    ul{
+        position: relative;
+        top: 0;
+        left: 0;
+        width:100%;
+        float: right;
+        color: #444;
+        font-size: 14px;
+        margin-top: 1px;
+    }
+    ul li{
+        line-height: 30px;
+        box-sizing: border-box;
+        padding: 0 30px;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .swiper_wrap .font_inner a{
+        color: #fe0017;
+        text-align: center;
+    }
+    .swiper_wrap a:hover{
+        color: #FA9101;
+    }
+    .title{
+        text-align: center;
+        min-width:80%;
+        height: .3rem;
+        line-height: .3rem;
+        color: #cdcdcd;
+        font-size: .28rem;
+        margin-top: .3rem;
+    }
+    .Boost{
+        width: 80%;
+        height: auto;
+        margin: .3rem auto;
+    }
+    .Boost-item{
+        width: 100%;
+        height: .5rem;
+        margin: .2rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-sizing: border-box;
+    }
+    .Boost-item .left{
+        width: 50%;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+    }
+    .Boost-item .left img{
+        width: .4rem;
+        height: .4rem;
+        border-radius: 50%;
+        margin-right: .1rem;
+    }
+    .Boost-item .right{
+        width: 50%;
+        height: 100%;
+        line-height: .5rem;
+        text-align: right;
+    }
+    .more{
+        width: 100%;
+        height: .5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: .3rem;
+        color: #c9c9c9;
+    }
+    .rule{
+        width: 100%;
+        height: auto;
+        border-top: .3rem solid #c9c9c9;
+    }
+    .rule .content{
+        width: 100%;
+        height: auto;
+        box-sizing: border-box;
+        padding:.3rem;
+        color: #b3b3b3;
+    }
+    .rule .content span{
+        padding:.05rem 0;
+        display: block;
+    }
+</style>
+<body>
+    <header class="banner">
+        <div class="User-Info">
+            <div class="user-pic">
+                <img src="images/logo.jpg" alt="">
+            </div>
+            <div class="user-name">你好18382734466</div>
+            <div class="text">我正在测试朋友圈值多少钱</div>
+        </div>
+    </header>
+    <div class="help-btn">帮我测试</div>
+    <div class="buy">直接购买</div>
+    <div class="swiper_wrap">
+        <ul class="font_inner" style="height: 120px; top: -60px;">
+            <li>
+                <a href="###">恭喜小王朋友圈测试价格为<span style="color:#eeac00">30</span>元</a>
+            </li>
+            <li>
+                <a href="###">恭喜小王朋友圈测试价格为<span style="color:#eeac00">30</span>元</a>
+            </li>
+            <li>
+                <a href="###">恭喜小王朋友圈测试价格为<span style="color:#eeac00">30</span>元</a>
+            </li>
+            <li>
+                <a href="###">恭喜小王朋友圈测试价格为<span style="color:#eeac00">30</span>元</a>
+            </li>
+
+        </ul>
+    </div>
+    <div class="title">- 已有
+        <span style="font-weight: bold;color:#919191">400</span>
+        位朋友帮你加油
+        <span style="color:#fe0017;font-weight: bold">￥340</span>元 -
+    </div>
+    <!--助力列表-->
+    <div class="Boost">
+        <div class="Boost-item">
+            <div class="left">
+                <img src="images/logo.jpg" alt="">
+                <span>你好</span>
+            </div>
+            <div class="right">
+                <span style="color:#fe0017;">2</span>
+                <span>元</span>
+            </div>
+        </div>
+        <div class="Boost-item">
+            <div class="left">
+                <img src="images/logo.jpg" alt="">
+                <span>你好</span>
+            </div>
+            <div class="right">
+                <span style="color:#fe0017;">2</span>
+                <span>元</span>
+            </div>
+        </div>
+        <div class="Boost-item">
+            <div class="left">
+                <img src="images/logo.jpg" alt="">
+                <span>你好</span>
+            </div>
+            <div class="right">
+                <span style="color:#fe0017;">2</span>
+                <span>元</span>
+            </div>
+        </div>
+        <!--点击加载更多-->
+        <div class="more">
+            <i class="iconfont">&#xe60b;</i>
+        </div>
+    </div>
+<!--规则-->
+    <div class="rule">
+        <div class="title">- 活动条款 -</div>
+        <div class="content">
+            <span>1.砍价时间为：数据倒计时等接口第三季度还是带回家圣诞节还是活动时间活动时间和</span>
+            <span>2.数据倒计时等接口第三季度还是带回家圣诞节还是活动时间活动时间和1.砍价时间为：</span>
+        </div>
+    </div>
+</body>
+<script  src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+<script src="js/mobile.js"></script>
+<script>
+    $(function(){
+        //1文字轮播(2-5页中间)开始
+        $(".font_inner li:eq(0)").clone(true).appendTo($(".font_inner"));//克隆第一个放到最后(实现无缝滚动)
+        var liHeight = $(".swiper_wrap").height();//一个li的高度
+        //获取li的总高度再减去一个li的高度(再减一个Li是因为克隆了多出了一个Li的高度)
+        var totalHeight = ($(".font_inner li").length *  $(".font_inner li").eq(0).height()) -liHeight;
+        $(".font_inner").height(totalHeight);//给ul赋值高度
+        var index = 0;
+        var autoTimer = 0;//全局变量目的实现左右点击同步
+        var clickEndFlag = true; //设置每张走完才能再点击
+        function tab(){
+            $(".font_inner").stop().animate({
+                top: -index * liHeight
+            },400,function(){
+                clickEndFlag = true;//图片走完才会true
+                if(index == $(".font_inner li").length -1) {
+                    $(".font_inner").css({top:0});
+                    index = 0;
+                }
+            })
+        }
+        function next() {
+            index++;
+            if(index > $(".font_inner li").length - 1) {//判断index为最后一个Li时index为0
+                index = 0;
+            }
+            tab();
+        }
+        function prev() {
+            index--;
+            if(index < 0) {
+                index = $(".font_inner li").size() - 2;//因为index的0 == 第一个Li，减二是因为一开始就克隆了一个LI在尾部也就是多出了一个Li，减二也就是_index = Li的长度减二
+                $(".font_inner").css("top",- ($(".font_inner li").size() -1) * liHeight);//当_index为-1时执行这条，也就是走到li的最后一个
+            }
+            tab();
+        }
+        //切换到下一张
+        $(".swiper_wrap .gt").on("click",function() {
+            if(clickEndFlag) {
+                next();
+                clickEndFlag = false;
+            }
+        });
+        //切换到上一张
+        $(".swiper_wrap .lt").on("click",function() {
+            if(clickEndFlag) {
+                prev();
+                clickEndFlag = false;
+            }
+        });
+        //自动轮播
+        autoTimer = setInterval(next,3000);
+        $(".font_inner a").hover(function(){
+            clearInterval(autoTimer);
+        },function() {
+            autoTimer = setInterval(next,3000);
+        })
+
+        //鼠标放到左右方向时关闭定时器
+        $(".swiper_wrap .lt,.swiper_wrap .gt").hover(function(){
+            clearInterval(autoTimer);
+        },function(){
+            autoTimer = setInterval(next,3000);
+        })
+        //1文字轮播(2-5页中间)结束
+    })
+</script>
+</html>
